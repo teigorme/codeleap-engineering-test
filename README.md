@@ -9,7 +9,7 @@ python -m venv .venv  
 #### Activar o ambiente virtual
 
 ```bash
-.venv\scripts\activate
+ source .venv\scripts\activate
 ```
 
 ####  Baixar as libs do projeto
