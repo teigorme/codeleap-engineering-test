@@ -1,9 +1,5 @@
 {% extends "_base.html" %} {% block content %}
 
-
-
-
-
 <div class="border border-gray-400 rounded-lg p-4 mb-4">
   <h2 class="lg:text-xl font-semibold py-4">What’s on your mind?</h2>
   <form method="post" action="{% url 'create' %}">
@@ -186,6 +182,7 @@
                   name="{{ form.description.html_name }}"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#7695EC] focus:border-[#7695EC] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#7695EC] dark:focus:border-[#7695EC]"
                   rows="5"
+                  required
                   placeholder="Content here">{{ post.description }}</textarea>
         {% if form.description.errors %}
         <div class="text-red-500 text-xs mt-1">{{ form.description.errors }}</div>
