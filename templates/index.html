@@ -1,6 +1,14 @@
 {% extends "_base.html" %} {% block content %}
+<nav class="h-14 w-full bg-[#7695EC] flex items-center justify-between px-4">
+      <h2 class="lg:text-2xl text-white font-semibold">CodeLeap Network</h2>
+      <a href="{% url 'logout' %}">Logout</a>
+    </nav>
 
-<div class="border border-gray-400 rounded-lg p-4 mb-4">
+
+
+
+<div class="mx-auto px-4 mt-4">
+<div class="border border-gray-400 rounded-lg p-4 mb-4 ">
   <h2 class="lg:text-xl font-semibold py-4">What’s on your mind?</h2>
   <form method="post" action="{% url 'create' %}">
     {% csrf_token %}
@@ -19,13 +27,13 @@
 
     <div class="mb-5">
       <label
-        for="{{ form.description.id_for_label }}"
+        for="{{ form.content.id_for_label }}"
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >
-        Description
+        Content
       </label>
-      {{ form.description }} {% if form.description.errors %}
-      <div class="text-red-500 text-xs mt-1">{{ form.description.errors }}</div>
+      {{ form.content }} {% if form.content.errors %}
+      <div class="text-red-500 text-xs mt-1">{{ form.content.errors }}</div>
       {% endif %}
     </div>
 
@@ -41,7 +49,8 @@
   </form>
 </div>
 
-{% if posts %} {% for post in posts %}
+{% if posts %} 
+{% for post in posts %}
 <div class="border border-gray-400 border-t-[#7695EC] rounded-lg mb-5">
   <div
     class="h-14 w-full bg-[#7695EC] flex items-center justify-between px-4 rounded-t-lg"
@@ -174,18 +183,18 @@
     
    
     <div class="mb-5">
-        <label for="{{ form.description.id_for_label }}" 
+        <label for="{{ form.content.id_for_label }}" 
                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Description
+            Content
         </label>
-        <textarea id="{{ form.description.id_for_label }}"
-                  name="{{ form.description.html_name }}"
+        <textarea id="{{ form.content.id_for_label }}"
+                  name="{{ form.content.html_name }}"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#7695EC] focus:border-[#7695EC] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#7695EC] dark:focus:border-[#7695EC]"
                   rows="5"
                   required
-                  placeholder="Content here">{{ post.description }}</textarea>
-        {% if form.description.errors %}
-        <div class="text-red-500 text-xs mt-1">{{ form.description.errors }}</div>
+                  placeholder="Content here">{{ post.content }}</textarea>
+        {% if form.content.errors %}
+        <div class="text-red-500 text-xs mt-1">{{ form.content.errors }}</div>
         {% endif %}
     </div>
 
@@ -210,17 +219,20 @@
   <div>
     <div class="p-5">
       <div class="flex justify-between items-center mb-5">
-        <h3 class="text-[#7695EC] cursor-pointer">@teigorme</h3>
+        <h3 class="text-[#7695EC] cursor-pointer">@{{ post.username }}</h3>
         <h4>{{ post.created_at|timesince }} ago</h4>
       </div>
       <div>
-        <p class="text-justify">{{ post.description }}</p>
+        <p class="text-justify">{{ post.content }}</p>
       </div>
     </div>
   </div>
 </div>
 {% endfor %} {% else %}
 <div class="text-center py-10">
-  <p class="text-gray-500 text-lg">Not item found</p>
+  <p class="text-gray-500 text-lg">Not found item</p>
 </div>
-{% endif %} {% endblock content %}
+{% endif %} 
+</div>
+
+{% endblock content %}

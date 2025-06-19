@@ -4,7 +4,7 @@ from .models import Posts
 class PostForm(forms.ModelForm):
     class Meta:
         model = Posts
-        fields = ['title', 'description']
+        fields = ['title', 'content']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,11 +14,11 @@ class PostForm(forms.ModelForm):
             'id': 'title',
             'required': 'required'
         })
-        self.fields['description'].widget.attrs.update({
+        self.fields['content'].widget.attrs.update({
             'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#7695EC] focus:border-[#7695EC] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#7695EC] dark:focus:border-[#7695EC]',
             'placeholder': 'Content here',
             'cols': '30',
             'rows': '5',
-            'id': 'description',
+            'id': 'content',
             'required': 'required'
         })
