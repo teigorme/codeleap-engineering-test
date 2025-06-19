@@ -18,6 +18,10 @@ class PostOut(Schema):
     title: str
     content: Optional[str] = None
 
+class PostUpdate(Schema):
+    title: str
+    content: Optional[str] = None
+    
 
 api = NinjaAPI()
 
@@ -37,8 +41,8 @@ def get_post(request, post_id: int):
     return post
 
 
-@api.put("/{post_id}/", response=PostOut)
-def update_post(request, post_id: int, payload: PostIn):
+@api.patch("/{post_id}/", response=PostOut)
+def update_post(request, post_id: int, payload: PostUpdate):
     post = get_object_or_404(Posts, id=post_id)
     for attr, value in payload.dict().items():
         setattr(post, attr, value)
